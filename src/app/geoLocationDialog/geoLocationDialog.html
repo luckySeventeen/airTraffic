@@ -1,0 +1,7 @@
+<div mat-dialog-content>
+  <p>In order to use Air traffic app you need to share your geo location</p>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
+</div>
