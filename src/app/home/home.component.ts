@@ -9,6 +9,10 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class HomeComponent implements OnInit {
 
+  currentLatitude: number;
+  currentLongitude: number;
+  glNotSuported = false;
+
   constructor(public dialog: MatDialog) {
     this.openDialog();
   }
@@ -17,11 +21,14 @@ export class HomeComponent implements OnInit {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(this.showPosition);
     } else {
+      this.glNotSuported = true;
       console.log('not supported by browser');
     }
-  };
+  }
 
-  public showPosition(position): void {
+  private showPosition(position): void {
+    this.currentLatitude = position.coords.latitude;
+    this.currentLongitude = position.coords.longitude;
     console.log('latitude:', position.coords.latitude, 'longitude:', position.coords.longitude);
   }
 
