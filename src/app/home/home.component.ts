@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
 
   public openDialog(): void {
     const dialogRef = this.dialog.open(GeoLocationDialogComponent, {
-      height: '300px',
+      height: '200px',
       width: '300px'
     });
 
