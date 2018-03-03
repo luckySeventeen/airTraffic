@@ -7,19 +7,23 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import {GeoLocationDialogComponent} from './geoLocationDialog/geoLocationDialog';
+import { HomeComponent } from './home/home.component';
+import {AppRoutingModule} from './app-routing.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    GeoLocationDialogComponent
+    GeoLocationDialogComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     MatDialogModule,
     MatButtonModule,
     BrowserAnimationsModule,
-    CdkTableModule
+    CdkTableModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
