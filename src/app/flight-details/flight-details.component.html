@@ -1,3 +1,28 @@
-<p>
-  flight-details works!
-</p>
+<div class="back-btn-container">
+  <button class="back-btn" (click)="goBack()">Back</button>
+</div>
+<div class="flight-details">
+  <div class="company-logo">
+    <i class="fa fa-plane"></i>
+  </div>
+  <div class="info-block">
+    <div>
+      <span>Airplane manufacturer: </span>
+      <span class="blue">{{flight.Man}}</span>
+    </div>
+    <div>
+      <span>Airplane model: </span>
+      <span class="blue">{{flight.Mdl}}</span>
+    </div>
+  </div>
+  <div class="info-block">
+    <div>
+      <span>Flight from: </span>
+      <span class="blue">{{flight.From}}</span>
+    </div>
+    <div>
+      <span>Flight destination: </span>
+      <span class="blue">{{flight.To}}</span>
+    </div>
+  </div>
+</div>

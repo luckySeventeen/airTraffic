@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {DataService} from '../home/data.service';
 import {ActivatedRoute} from '@angular/router';
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'app-flight-details',
@@ -14,10 +15,13 @@ export class FlightDetailsComponent implements OnInit {
   flightId: string;
   flight: any = {};
 
-  constructor(private dataService: DataService, private route: ActivatedRoute) {
+  constructor(private dataService: DataService, private route: ActivatedRoute, private _location: Location) {
     console.log(this.flightId);
   }
 
+  public goBack(): void {
+    this._location.back();
+  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {

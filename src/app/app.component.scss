@@ -26,4 +26,9 @@
     justify-content: space-between;
     align-items: center;
   }
+  app-flight-details {
+    display: flex;
+    align-self: center;
+    height: calc(100% - 55px);
+  }
 }

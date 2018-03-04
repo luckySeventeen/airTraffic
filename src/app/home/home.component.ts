@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {GeoLocationDialogComponent} from '../geoLocationDialog/geoLocationDialog';
 import {MatDialog} from '@angular/material/dialog';
 import {DataService} from './data.service';
 
@@ -14,21 +13,22 @@ export class HomeComponent implements OnInit {
   currentLatitude: any;
   currentLongitude: any;
   glNotSupported = false;
+  deniedLocation = false;
   aircraftList: any;
 
   constructor(public dialog: MatDialog, private dataService: DataService) {
-    this.openDialog();
-
+     this.getLocation();
   }
 
   // get all aircrafts at your current location
   private getData(): void {
-    this.dataService.getFlights(this.currentLongitude, this.currentLatitude)
+    this.dataService.getFlights('Serbia')
       .subscribe(data => {
         this.aircraftList = data.acList;
         console.log(this.aircraftList);
       });
   }
+
 // get users current geo location
   public getLocation(): void {
     if (navigator.geolocation) {
@@ -42,19 +42,17 @@ export class HomeComponent implements OnInit {
       this.glNotSupported = true;
       console.log('not supported by browser');
     }
+    const vm = this;
+    navigator.geolocation.watchPosition(function () {
+      },
+      function (error) {
+        if (error.code === error.PERMISSION_DENIED) {
+          vm.deniedLocation = true;
+        }
+
+      });
   }
 
-
-  public openDialog(): void {
-    const dialogRef = this.dialog.open(GeoLocationDialogComponent, {
-      height: '200px',
-      width: '300px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      this.getLocation();
-    });
-  }
 
   ngOnInit() {
   }
