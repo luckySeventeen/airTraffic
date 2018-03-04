@@ -9,3 +9,17 @@
   height: calc(100% - 55px);
   justify-content: center;
 }
+.aircraft-list-container {
+  width: 50%;
+  margin: 30px auto;
+  height: 80%;
+  overflow: auto;
+  .list-item {
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 10px;
+    height: 30px;
+  }
+}

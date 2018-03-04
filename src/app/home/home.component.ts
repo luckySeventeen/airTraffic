@@ -14,28 +14,28 @@ export class HomeComponent implements OnInit {
   currentLatitude: any;
   currentLongitude: any;
   glNotSupported = false;
-  data: any;
+  aircraftList: any;
 
   constructor(public dialog: MatDialog, private dataService: DataService) {
     this.openDialog();
-    this.getData();
 
   }
 
-  getData(): void {
-    this.dataService.getFlights(44.676814799999995, 20.6668925)
+  // get all aircrafts at your current location
+  private getDataFirstTime(): void {
+    this.dataService.getFlights(this.currentLatitude, this.currentLongitude)
       .subscribe(data => {
-        this.data = data;
-        console.log(this.data);
+        this.aircraftList = data.acList;
+        console.log(this.aircraftList);
       });
   }
-
+// get users current geo location
   public getLocation(): void {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
         this.currentLatitude = position.coords.latitude;
         this.currentLongitude = position.coords.longitude;
-        console.log(this.currentLongitude, this.currentLatitude);
+        this.getDataFirstTime();
       });
     } else {
       this.glNotSupported = true;

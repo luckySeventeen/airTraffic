@@ -2,3 +2,13 @@
   <span><i class="fa fa-exclamation-circle"></i></span>
   <span>SORRY! Geo location not supported by your browser.</span>
 </div>
+
+<div class="aircraft-list-container">
+  <div class="list-item"
+       *ngFor="let item of aircraftList">
+    <div><i class="fa fa-plane"></i></div>
+    <div>Altitude: {{item.Alt}}</div>
+    <div>Flight number: {{item.Id}}</div>
+    <div><i class="fa fa-plane"></i></div>
+  </div>
+</div>
