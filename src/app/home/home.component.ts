@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
   deniedLocation = false;
   aircraftList: any;
 
-  constructor(public dialog: MatDialog, private dataService: DataService) {
+  constructor(private dataService: DataService) {
      this.getLocation();
   }
 
