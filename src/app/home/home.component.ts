@@ -8,7 +8,7 @@ import {DataService} from './data.service';
   providers: [DataService],
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   currentLatitude: any;
   currentLongitude: any;
@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit {
   aircraftList: any;
 
   constructor(private dataService: DataService) {
-     this.getLocation();
+    this.getLocation();
+    this.getData();
   }
 
   // get all aircrafts at your current location
@@ -35,8 +36,6 @@ export class HomeComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.currentLatitude = position.coords.latitude;
         this.currentLongitude = position.coords.longitude;
-        console.log(this.currentLongitude, this.currentLatitude);
-        this.getData();
       });
     } else {
       this.glNotSupported = true;
@@ -49,12 +48,10 @@ export class HomeComponent implements OnInit {
         if (error.code === error.PERMISSION_DENIED) {
           vm.deniedLocation = true;
         }
-
       });
   }
 
 
-  ngOnInit() {
-  }
+
 
 }

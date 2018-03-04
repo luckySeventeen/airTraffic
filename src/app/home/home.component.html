@@ -3,17 +3,16 @@
   <span>SORRY! Geo location not supported by your browser.</span>
 </div>
 
-<div *ngIf="deniedLocation === true">PA PA</div>
 
 <div class="aircraft-list-container">
   <div class="list-item"
        *ngFor="let item of aircraftList"
        [routerLink]="['/flightDetails', item.Icao]">
-    <div><i class="fa fa-plane"></i></div>
+    <div *ngIf="item.Long < 0"><i class="fa fa-plane"></i></div>
     <div class="main-info">
       <div class="main-info-item"><span> Altitude:</span> <span>{{item.Alt}}</span></div>
-      <div class="main-info-item"><span>Flight number: </span> <span>{{item.Id}}</span></div>
+      <div class="main-info-item"><span>Flight number: </span> <span>{{item.Long}}</span></div>
     </div>
-    <div><i class="fa fa-plane"></i></div>
+    <div *ngIf="item.Long > 0"><i class="fa fa-plane"></i></div>
   </div>
 </div>
