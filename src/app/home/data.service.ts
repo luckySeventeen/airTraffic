@@ -21,11 +21,23 @@ export class DataService {
       );
   }
 
-  getFlights(lat: any, lng: any) {
+  getFlights(lat: string, lng: string) {
 
     // Add safe, URL encoded search parameter if there is a search term
     const options = {
-      params: new HttpParams().set('latQ', lat).set('lngQ', lng)
+      params: new HttpParams().set('flatQ', lat).set('flngQ', lng)
+
+    };
+    return this.http.get(this.dataUrl, options)
+      .pipe(
+        catchError(this.handleError)
+      );
+  }
+
+  getFlightById(id: string) {
+
+    const options = {
+      params: new HttpParams().set('idQ', id)
 
     };
     return this.http.get(this.dataUrl, options)

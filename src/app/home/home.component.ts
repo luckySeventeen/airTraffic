@@ -22,8 +22,8 @@ export class HomeComponent implements OnInit {
   }
 
   // get all aircrafts at your current location
-  private getDataFirstTime(): void {
-    this.dataService.getFlights(this.currentLatitude, this.currentLongitude)
+  private getData(): void {
+    this.dataService.getFlights(this.currentLongitude, this.currentLatitude)
       .subscribe(data => {
         this.aircraftList = data.acList;
         console.log(this.aircraftList);
@@ -35,7 +35,8 @@ export class HomeComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(position => {
         this.currentLatitude = position.coords.latitude;
         this.currentLongitude = position.coords.longitude;
-        this.getDataFirstTime();
+        console.log(this.currentLongitude, this.currentLatitude);
+        this.getData();
       });
     } else {
       this.glNotSupported = true;

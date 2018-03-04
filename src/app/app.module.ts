@@ -10,13 +10,15 @@ import { AppComponent } from './app.component';
 import {GeoLocationDialogComponent} from './geoLocationDialog/geoLocationDialog';
 import { HomeComponent } from './home/home.component';
 import {AppRoutingModule} from './app-routing.module';
+import { FlightDetailsComponent } from './flight-details/flight-details.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     GeoLocationDialogComponent,
-    HomeComponent
+    HomeComponent,
+    FlightDetailsComponent
   ],
   imports: [
     BrowserModule,

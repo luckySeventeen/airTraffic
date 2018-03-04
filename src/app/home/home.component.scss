@@ -20,6 +20,44 @@
     align-items: center;
     justify-content: space-around;
     margin: 10px;
-    height: 30px;
+    height: 40px;
+    color: #709cb7;
+    cursor: pointer;
+    .main-info {
+      display: flex;
+      flex: 0 0 60%;
+      align-items: center;
+      justify-content: space-around;
+      .main-info-item {
+        display: block;
+      }
+    }
+  }
+}
+
+@media all and (max-width: 1000px) {
+  .aircraft-list-container {
+    .list-item {
+      height: 60px;
+      .main-info {
+        flex-direction: column;
+      }
+    }
+  }
+}
+@media all and (max-width: 620px) {
+  .aircraft-list-container {
+    width: 60%;
+    .list-item {
+      height: 80px;
+      .main-info {
+        flex-direction: column;
+        .main-info-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+      }
+    }
   }
 }
