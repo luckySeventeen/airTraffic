@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import {CdkTableModule} from '@angular/cdk/table';
 import { MatDialogModule, MatButtonModule } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 
 
 import { AppComponent } from './app.component';
@@ -19,6 +20,7 @@ import {AppRoutingModule} from './app-routing.module';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     MatDialogModule,
     MatButtonModule,
     BrowserAnimationsModule,

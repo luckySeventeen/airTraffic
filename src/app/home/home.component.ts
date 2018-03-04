@@ -1,36 +1,48 @@
 import {Component, OnInit} from '@angular/core';
 import {GeoLocationDialogComponent} from '../geoLocationDialog/geoLocationDialog';
 import {MatDialog} from '@angular/material/dialog';
+import {DataService} from './data.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  providers: [DataService],
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
 
-  currentLatitude: number;
-  currentLongitude: number;
-  glNotSuported = false;
+  currentLatitude: any;
+  currentLongitude: any;
+  glNotSupported = false;
+  data: any;
 
-  constructor(public dialog: MatDialog) {
+  constructor(public dialog: MatDialog, private dataService: DataService) {
     this.openDialog();
+    this.getData();
+
+  }
+
+  getData(): void {
+    this.dataService.getFlights(44.676814799999995, 20.6668925)
+      .subscribe(data => {
+        this.data = data;
+        console.log(this.data);
+      });
   }
 
   public getLocation(): void {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.showPosition);
+      navigator.geolocation.getCurrentPosition(position => {
+        this.currentLatitude = position.coords.latitude;
+        this.currentLongitude = position.coords.longitude;
+        console.log(this.currentLongitude, this.currentLatitude);
+      });
     } else {
-      this.glNotSuported = true;
+      this.glNotSupported = true;
       console.log('not supported by browser');
     }
   }
 
-  private showPosition(position): void {
-    this.currentLatitude = position.coords.latitude;
-    this.currentLongitude = position.coords.longitude;
-    console.log('latitude:', position.coords.latitude, 'longitude:', position.coords.longitude);
-  }
 
   public openDialog(): void {
     const dialogRef = this.dialog.open(GeoLocationDialogComponent, {
